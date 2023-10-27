@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@section('title', 'Home')
+@section('title', 'Crear cursos')
 @section('content')
     <h1>En esta pagina podrás crear un curso</h1>
 
