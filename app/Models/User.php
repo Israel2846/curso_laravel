@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -42,4 +43,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected function name(): Attribute
+    {
+        return new Attribute(
+            /* get: function ($value) {
+                return ucwords($value);
+            }, */
+
+            /* set: function ($value) {
+                return strtolower($value);
+            } */
+
+            get: fn ($value) => ucwords($value),
+            set: fn ($value) => strtolower($value)
+        );
+    }
+
+    /* Antiguo metodo */
+    // public function getNameAttribute($value)
+    // {
+    //     return ucwords($value);
+    // }
+
+    // public function setNamesAttribute($value)
+    // {
+    //     $this->attributes['name'] = strtolower($value);
+    // }
 }
