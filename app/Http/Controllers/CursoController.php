@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCurso;
 use App\Models\Curso;
 use Illuminate\Http\Request;
 use Psy\CodeCleaner\ReturnTypePass;
@@ -20,14 +21,15 @@ class CursoController extends Controller
         return view('cursos.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCurso $request)
     {
-        $request->validate([
-            // 'name' => ['required', 'min:3'],
-            'name' => 'required|min:3',
-            'descripcion' => 'required',
-            'categoria' => 'required',
-        ]);
+        /* Se cambian a Request/StoreCurso.php */
+        // $request->validate([
+        //     // 'name' => ['required', 'min:3'],
+        //     'name' => 'required|min:3',
+        //     'descripcion' => 'required',
+        //     'categoria' => 'required',
+        // ]);
 
         $curso = new Curso();
 
@@ -60,8 +62,12 @@ class CursoController extends Controller
             'name' => 'required|min:3',
             'descripcion' => 'required',
             'categoria' => 'required',
+        ], [
+            'descripcion.required' => 'La descripcion es obligatoria',
+        ], [
+            'name' => 'nombre del curso',
         ]);
-        
+
         $curso->name = $request->name;
         $curso->descripcion = $request->descripcion;
         $curso->categoria = $request->categoria;
