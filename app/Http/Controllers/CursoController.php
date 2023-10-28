@@ -31,13 +31,24 @@ class CursoController extends Controller
         //     'categoria' => 'required',
         // ]);
 
-        $curso = new Curso();
+        /* Creación de curso asignando valores 1 por 1 */
+        // $curso = new Curso();
 
-        $curso->name = $request->name;
-        $curso->descripcion = $request->descripcion;
-        $curso->categoria = $request->categoria;
+        // $curso->name = $request->name;
+        // $curso->descripcion = $request->descripcion;
+        // $curso->categoria = $request->categoria;
 
-        $curso->save();
+        // $curso->save();
+
+        /* Segunda manera de crear un registro */
+        // $curso = Curso::create([
+        //     'name' => $request->name,
+        //     'descripcion' => $request->descripcion,
+        //     'categoria' => $request->categoria,
+        // ]);
+
+        /* Creación de registro en una sola línea */
+        $curso = Curso::create($request->all());
 
         return redirect()->route('cursos.show', $curso->id);
     }
@@ -68,11 +79,13 @@ class CursoController extends Controller
             'name' => 'nombre del curso',
         ]);
 
-        $curso->name = $request->name;
-        $curso->descripcion = $request->descripcion;
-        $curso->categoria = $request->categoria;
+        // $curso->name = $request->name;
+        // $curso->descripcion = $request->descripcion;
+        // $curso->categoria = $request->categoria;
 
-        $curso->save();
+        // $curso->save();
+
+        $curso->update($request->all());
 
         return redirect()->route('cursos.show', $curso->id);
     }
