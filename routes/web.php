@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
 /* CRUD de curso */
 // Route::controller(CursoController::class)->group(function () {
@@ -40,3 +40,5 @@ Route::resource('cursos', CursoController::class);
         return "Bienvenido al curso $curso";
     }
 }); */
+
+Route::view('nosotros', 'nosotros')->name('nosotros');
