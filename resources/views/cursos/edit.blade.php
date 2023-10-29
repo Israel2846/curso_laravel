@@ -20,6 +20,18 @@
         <br>
 
         <label>
+            Slug:
+            <br>
+            <input type="text" name="slug" value="{{ old('slug', $curso->slug) }}">
+        </label>
+        @error('slug')
+            <br>
+            <span>*{{ $message }}</span>
+            <br>
+        @enderror
+        <br>
+
+        <label>
             Descripción:
             <br>
             <textarea name="descripcion" rows="5">{{ old('descripcion', $curso->descripcion) }}</textarea>

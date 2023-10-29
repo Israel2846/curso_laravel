@@ -16,4 +16,9 @@ class Curso extends Model
 
     /* Segunda manera de insertar columnas masivas (Se asignan aquí los campos que se ignorarán) */
     protected $guarded = [];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

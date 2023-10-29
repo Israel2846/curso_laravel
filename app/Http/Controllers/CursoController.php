@@ -50,7 +50,7 @@ class CursoController extends Controller
         /* Creación de registro en una sola línea */
         $curso = Curso::create($request->all());
 
-        return redirect()->route('cursos.show', $curso->id);
+        return redirect()->route('cursos.show', $curso);
     }
 
     public function show(Curso $curso)
@@ -73,6 +73,7 @@ class CursoController extends Controller
             'name' => 'required|min:3',
             'descripcion' => 'required',
             'categoria' => 'required',
+            'slug' => 'required|unique:cursos,slug,' . $curso->id,
         ], [
             'descripcion.required' => 'La descripcion es obligatoria',
         ], [
@@ -87,7 +88,7 @@ class CursoController extends Controller
 
         $curso->update($request->all());
 
-        return redirect()->route('cursos.show', $curso->id);
+        return redirect()->route('cursos.show', $curso);
     }
 
     public function destroy(Curso $curso)
