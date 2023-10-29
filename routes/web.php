@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactanosController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\HomeController;
 use App\Mail\ContactanosMailable;
@@ -45,8 +46,14 @@ Route::resource('cursos', CursoController::class);
 
 Route::view('nosotros', 'nosotros')->name('nosotros');
 
-/* Enviar correos */
-Route::get('contactanos', function () {
-    Mail::to('israel.k40@gmail.com')->send(new ContactanosMailable);
-    return 'Mensaje enviado';
-})->name('contactanos');
+/* Enviar correos sin controlador */
+// Route::get('contactanos', function () {
+//     Mail::to('israel.k40@gmail.com')->send(new ContactanosMailable);
+//     return 'Mensaje enviado';
+// })->name('contactanos');
+
+/* Enviar correos con controlador */
+Route::controller(ContactanosController::class)->group(function(){
+    Route::get('contactanos', 'index')->name('contactanos.index');
+    Route::post('contactanos', 'store')->name('contactanos.store');
+});
