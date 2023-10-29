@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Profile;
 
 class User extends Authenticatable
 {
@@ -70,4 +71,15 @@ class User extends Authenticatable
     // {
     //     $this->attributes['name'] = strtolower($value);
     // }
+
+    public function profile()
+    {
+        // $profile = Profile::where('user_id', $this->id)->first();
+
+        // return $profile;
+        // return $this->hasOne(Profile::class, 'user_id', 'user_id'); /* 2do parametro es el id de la tabla referencia, el tercero es de la table que lo llama */
+
+        // Relación 1 a 1
+        return $this->hasOne(Profile::class);
+    }
 }
