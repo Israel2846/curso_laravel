@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Profile;
 use App\Models\Post;
 use App\Models\Video;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -94,5 +95,22 @@ class User extends Authenticatable
     public function videos()
     {
         return $this->hasMany(Video::class);
+    }
+
+    /* Relación muchos a muchos */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+
+        /* Para insertar un registro */
+        // $user->roles()->attach(2);
+        // $user->roles()->attach([1, 2, 3]);  
+
+        /* Para eliminar un registro */
+        // $user->roles()->detach(1);
+        // $user->roles()->detach([1, 2, 3]);
+
+        /* Sincronizar registros */
+        // $user->roles()->sync([1, 2]);
     }
 }
