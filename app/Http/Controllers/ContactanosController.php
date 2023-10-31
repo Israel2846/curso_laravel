@@ -21,7 +21,7 @@ class ContactanosController extends Controller
             'mensaje' => 'required',
         ]);
 
-        Mail::to('israaacolin@gmail.com')->send(new ContactanosMailable($request->all()));
+        Mail::to($request->email)->send(new ContactanosMailable($request->all()));
 
         /* Primera manera de variables de sesion */
         // session()->flash('info', 'Mensaje enviado correctamente');
